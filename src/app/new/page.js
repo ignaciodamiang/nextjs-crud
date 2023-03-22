@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Page() {
-  return <div>home page</div>;
+  return <div>task form</div>;
 }
 
 export default Page;
