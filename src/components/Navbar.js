@@ -1,20 +1,28 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useTasks } from '@/context/TasksContext';
 
 export function Navbar() {
   const router = useRouter();
+  const { tasks } = useTasks();
 
   return (
-    <header>
+    <header className='flex justify-between items-center bg-gray-800 px-28 py-3'>
+      <Link href={'/'}>
+        <h1 className='font-bold text-3xl text-white'>
+          Tasks App
+          <span className='text-sm ml-5 text-slate-300'>
+            {tasks.length} tasks
+          </span>
+        </h1>
+      </Link>
       <div>
-        <Link href={'/'}>
-          <h1>Tasks App</h1>
-        </Link>
         <button
           onClick={() => {
             router.push('/new');
           }}
+          className='bg-green-500 hover:bg-green-400 text-white font-bold px-5 py-2 rounded-sm inline-flex items-center'
         >
           Add task
         </button>
