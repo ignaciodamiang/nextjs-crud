@@ -1,7 +1,9 @@
 import { useRouter } from 'next/navigation';
+import { useTasks } from '@/context/TasksContext';
 
 export const TaskCard = ({ task }) => {
   const router = useRouter();
+  const { deleteTask } = useTasks();
 
   return (
     <li
@@ -10,7 +12,17 @@ export const TaskCard = ({ task }) => {
     >
       <h2>{task.title}</h2>
       <p>{task.description}</p>
-      <button>Delete</button>
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          const accept = window.confirm(
+            'Are you sure you want to delete task number ' + task.id + '?'
+          );
+          if (accept) deleteTask(task.id);
+        }}
+      >
+        Delete
+      </button>
     </li>
   );
 };
