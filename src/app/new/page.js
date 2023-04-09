@@ -8,7 +8,7 @@ function Page({ params }) {
     title: '',
     description: '',
   });
-  const { tasks, createTask } = useTasks();
+  const { tasks, createTask, updateTask } = useTasks();
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -17,7 +17,7 @@ function Page({ params }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (params.id) {
-      console.log('Edit task');
+      updateTask(params.id, task);
     } else {
       createTask(task.title, task.description);
     }
